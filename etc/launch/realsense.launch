@@ -1,0 +1,102 @@
+<launch>
+    <arg name="camera_serial"       value=""/>
+    <arg name="json_file_path"      default=""/>
+    <arg name="camera_name"         value="camera"/>
+    <arg name="tf_prefix"           value="$(arg camera_name)"/>
+    <arg name="base_frame_id"       value="$(arg tf_prefix)_link"/>
+    <arg name="depth_frame_id"      value="$(arg tf_prefix)_depth_frame"/>
+    <arg name="depth_optical_frame_id"  value="$(arg tf_prefix)_depth_optical_frame"/>
+
+    <arg name="fisheye_width"       default="640"/>
+    <arg name="fisheye_height"      default="480"/>
+    <arg name="enable_fisheye"      default="false"/>
+
+    <arg name="depth_width"         value="424"/>
+    <arg name="depth_height"        value="240"/>
+    <arg name="enable_depth"        value="true"/>
+
+    <arg name="infra_width"         value="424"/>
+    <arg name="infra_height"        value="240"/>
+    <arg name="enable_infra"        value="false"/>
+
+    <arg name="color_width"         value="640"/>
+    <arg name="color_height"        value="720"/>
+    <arg name="enable_color"        value="false"/>
+
+    <arg name="fisheye_fps"         default="30"/>
+    <arg name="depth_fps"           value="30"/>
+    <arg name="infra_fps"           value="30"/>
+    <arg name="color_fps"           value="30"/>
+    <arg name="gyro_fps"            default="400"/>
+    <arg name="accel_fps"           default="250"/>
+    <arg name="enable_gyro"         value="false"/>
+    <arg name="enable_accel"        value="false"/>
+
+    <arg name="enable_pointcloud"         value="false"/>
+    <arg name="pointcloud_texture_stream" default="RS2_STREAM_ANY"/>
+    <arg name="pointcloud_texture_index"  default="0"/>
+
+    <arg name="enable_sync"           value="false"/>
+    <arg name="align_depth"           value="false"/>
+
+    <arg name="publish_tf"            default="true"/>
+    <arg name="tf_publish_rate"       default="0"/>
+
+    <arg name="filters"               default=""/>
+    <arg name="clip_distance"         default="-2"/>
+    <arg name="linear_accel_cov"      default="0.01"/>
+    <arg name="initial_reset"         default="false"/>
+    <arg name="unite_imu_method"      default=""/>
+    <arg name="stereo_exposure_val"   value="8500"/>
+    <arg name="rgb_exposure_val"      value="0"/>
+
+
+    <group ns="$(arg camera_name)">
+      <include file="$(find realsense2_camera)/launch/includes/nodelet.launch.xml">
+        <arg name="tf_prefix"                value="$(arg tf_prefix)"/>
+        <arg name="serial_no"                value="$(arg camera_serial)"/>
+        <arg name="json_file_path"           value="$(arg json_file_path)"/>
+        <arg name="base_frame_id"            value="$(arg base_frame_id)"/>
+        <arg name="depth_frame_id"           value="$(arg depth_frame_id)"/>
+        <arg name="depth_optical_frame_id"   value="$(arg depth_optical_frame_id)"/>
+
+        <arg name="enable_pointcloud"        value="$(arg enable_pointcloud)"/>
+        <arg name="pointcloud_texture_stream" value="$(arg pointcloud_texture_stream)"/>
+        <arg name="pointcloud_texture_index"  value="$(arg pointcloud_texture_index)"/>
+        <arg name="enable_sync"              value="$(arg enable_sync)"/>
+        <arg name="align_depth"              value="$(arg align_depth)"/>
+
+        <arg name="fisheye_width"            value="$(arg fisheye_width)"/>
+        <arg name="fisheye_height"           value="$(arg fisheye_height)"/>
+        <arg name="enable_fisheye"           value="$(arg enable_fisheye)"/>
+
+        <arg name="depth_width"              value="$(arg depth_width)"/>
+        <arg name="depth_height"             value="$(arg depth_height)"/>
+        <arg name="enable_depth"             value="$(arg enable_depth)"/>
+
+        <arg name="color_width"              value="$(arg color_width)"/>
+        <arg name="color_height"             value="$(arg color_height)"/>
+        <arg name="enable_color"             value="$(arg enable_color)"/>
+
+        <arg name="infra_width"              value="$(arg infra_width)"/>
+        <arg name="infra_height"             value="$(arg infra_height)"/>
+        <arg name="enable_infra1"            value="$(arg enable_infra)"/>
+        <arg name="enable_infra2"            value="$(arg enable_infra)"/>
+
+        <arg name="fisheye_fps"              value="$(arg fisheye_fps)"/>
+        <arg name="depth_fps"                value="$(arg depth_fps)"/>
+        <arg name="infra_fps"                value="$(arg infra_fps)"/>
+        <arg name="color_fps"                value="$(arg color_fps)"/>
+        <arg name="gyro_fps"                 value="$(arg gyro_fps)"/>
+        <arg name="accel_fps"                value="$(arg accel_fps)"/>
+        <arg name="enable_gyro"              value="$(arg enable_gyro)"/>
+        <arg name="enable_accel"             value="$(arg enable_accel)"/>
+
+        <arg name="filters"                  value="$(arg filters)"/>
+        <arg name="clip_distance"            value="$(arg clip_distance)"/>
+        <arg name="linear_accel_cov"         value="$(arg linear_accel_cov)"/>
+        <arg name="initial_reset"            value="$(arg initial_reset)"/>
+        <arg name="unite_imu_method"         value="$(arg unite_imu_method)"/>
+      </include>
+    </group>
+</launch>

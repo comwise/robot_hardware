@@ -1,0 +1,33 @@
+<launch>
+  <!-- Command-line arguments -->
+  <arg name="ns" value="ifm3d"/>
+  <arg name="nn" value="camera"/>
+  <arg name="ip" value="192.168.0.69"/>
+  <arg name="xmlrpc_port" value="80"/>
+  <arg name="password" default=""/>
+  <arg name="schema_mask" value="2047"/>
+  <arg name="timeout_millis" default="500"/>
+  <arg name="timeout_tolerance_secs" default="5.0"/>
+  <arg name="respawn" default="true"/>
+  <arg name="assume_sw_triggered" default="false"/>
+  <arg name="sync_clocks" default="false"/>
+  <arg name="frame_id_base" value="$(arg ns)/$(arg nn)" />
+  <arg name="frame_id" value="$(arg ns)/$(arg nn)_link" />
+  <arg name="optical_frame_id" value="$(arg ns)/$(arg nn)_optical_link" />
+
+  <include ns="$(arg ns)" file="$(find ifm3d)/launch/nodelet.launch">
+    <arg name="camera" value="$(arg nn)"/>
+    <arg name="ip" value="$(arg ip)"/>
+    <arg name="xmlrpc_port" value="$(arg xmlrpc_port)"/>
+    <arg name="password" value="$(arg password)"/>
+    <arg name="schema_mask" value="$(arg schema_mask)"/>
+    <arg name="timeout_millis" value="$(arg timeout_millis)"/>
+    <arg name="timeout_tolerance_secs" value="$(arg timeout_tolerance_secs)"/>
+    <arg name="respawn" value="$(arg respawn)"/>
+    <arg name="assume_sw_triggered" value="$(arg assume_sw_triggered)"/>
+    <arg name="sync_clocks" value="$(arg sync_clocks)"/>
+    <arg name="frame_id_base" value="$(arg ns)/$(arg nn)" />
+    <arg name="frame_id" value="$(arg frame_id)" />
+    <arg name="optical_frame_id" value="$(arg optical_frame_id)" />
+  </include>
+</launch>

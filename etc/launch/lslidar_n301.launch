@@ -1,0 +1,34 @@
+<launch>
+  <arg name="node_name" value="lslidar"/>
+  <arg name="host" value="192.168.1.222"/>
+  <arg name="port" value="2368"/>
+  <arg name="frame_id" value="lslidar"/>
+  <arg name="start_angle" value="-180"/>
+  <arg name="end_angle" value="180"/>
+  <arg name="scan_frequency" value="20"/>
+  <arg name="angle_resolution" value="0.18"/>
+  <arg name="inverted" value="false"/>
+  <arg name="intensity" value="true"/>
+  <arg name="topic" value="rslidar_scan"/>
+  <arg name="health" value="diagnostics"/>
+  <group ns="$(arg node_name)">
+    <node pkg="lslidar_n301_driver" type="lslidar_n301_driver_node" name="lslidar_n301_driver_node" required="true" output="screen">
+      <param name="device_ip" value="$(arg host)"/>
+      <param name="device_port" value="$(arg port)"/>
+    </node>
+    <node pkg="lslidar_n301_decoder" type="lslidar_n301_decoder_node" name="lslidar_n301_decoder_node" required="true" output="screen">
+      <param name="child_frame_id" value="$(arg frame_id)"/>
+      <param name="start_angle" value="$(eval arg('start_angle'))"/>
+      <param name="end_angle" value="$(eval arg('end_angle'))"/>
+      <param name="min_range" value="0.3"/>
+      <param name="max_range" value="100.0"/>
+      <param name="frequency" value="$(eval arg('scan_frequency'))"/>
+      <param name="resolution" value="$(eval arg('angle_resolution'))"/>
+      <param name="inverted" value="$(arg inverted)"/>
+      <param name="intensity" value="$(arg intensity)"/>
+      <param name="publish_point_cloud" value="false"/>
+      <remap from="scan" to="$(arg topic)"/>
+      <remap from="diagnostics" to="$(arg health)"/>
+    </node>
+  </group>
+</launch>

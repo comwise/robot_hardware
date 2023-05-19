@@ -1,0 +1,560 @@
+{
+    "can": [
+        {
+            "id": "can_test",
+            "type": "test",
+            "adapter": "can",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/can/test",
+                "type": 3,
+                "channel": 3,
+                "baudrate": {
+                    "can0": 125,
+                    "can1": 1000
+                }
+            }
+        }
+    ],
+    "network": [
+        {
+            "id": "network",
+            "type": "",
+            "adapter": "network",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/net/laser_back",
+                "type": "",
+                "local_addr": "192.168.1.207/24",
+                "local_device": "enp0s8"
+            }
+        }
+    ],
+    "serial": [
+        {
+            "id": "serial",
+            "type": "serial",
+            "adapter": "serial",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/serial",
+                "type": "serial",
+                "channel": 0,
+                "node_id": 0,
+                "dev": "/dev/ttyUSB0",
+                "baudrate" : 115200,
+                "frequency": 50,
+                "timeout": 200
+            }
+        }
+    ],
+    "motor": [
+        {
+            "id": "motor_test",
+            "type": "test",
+            "adapter": "motor",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/motor/test",
+                "type": "test",
+                "channel": 0,
+                "node": 1,
+                "position" : 0
+            }
+        }
+    ],
+    "chassis": [
+        {
+            "id": "chassis",
+            "type": "diff",
+            "adapter": "chassis",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/chassis/diff",
+                "type": "diff",
+                "model": "curtis",
+                "bicycle_model": {
+                    "wheel_base": 1.21,
+                    "max_wheel_base": 1.21,
+                    "min_wheel_base": 1.165,
+                    "eccentric_distance": 0,
+                    "eccentric_angle": 0,
+                    "reduction_ratio": 1.35
+                },
+                "diff_model": {
+                    "wheel_track": 0.585,
+                    "wheel_diameter": 0.177,
+                    "left_reduce_ratio": 15,
+                    "right_reduce_ratio": 15,
+                    "left_direction" : 1,
+                    "right_direction": 1
+                }
+            }
+        }
+    ],
+    "joystick": [
+        {
+            "id": "joystick",
+            "type": "joystick",
+            "adapter": "joystick",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [
+                "joystick.so"
+            ],
+            "args": [],
+            "default": {
+                "name": "/comwise/joy/joystick",
+                "type": "",
+                "base_frame_id": "base_footprint",
+                "frame_id": "joy_link",
+                "device": "/dev/input/js0"
+            }
+        }
+    ],
+    "laser": [
+        {
+            "id": "laser_laser",
+            "type": "pf_r2000",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "pf_r2000",
+                "2d_param": {
+                    "laser_ip": "192.168.10.200",
+                    "laser_port": 80,
+                    "angle_min": -180,
+                    "angle_max": 180,
+                    "angle_increment": 0.25,
+                    "scan_frequency": 50,
+                    "topic": "/scan"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_sick_tim240",
+            "type": "sick_tim240",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "sick_tim240",
+                "2d_param": {
+                    "laser_ip": "192.168.10.200",
+                    "laser_port": 2111,
+                    "angle_min": -120,
+                    "angle_max": 120,
+                    "angle_increment": 0.5,
+                    "scan_frequency": 14.5,
+                    "topic": "/scan"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_sick_1xxx",
+            "type": "sick_1xx",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "sick_1xx",
+                "2d_param": {
+                    "laser_ip": "192.168.10.200",
+                    "laser_port": 2111,
+                    "angle_min": -135,
+                    "angle_max": 135,
+                    "angle_increment": 0.5,
+                    "scan_frequency": 50,
+                    "topic": "/scan"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_uam_05xl",
+            "type": "uam_05xl",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "uam_05xl",
+                "2d_param": {
+                    "laser_ip": "192.168.10.200",
+                    "laser_port": 10940,
+                    "angle_min": -135,
+                    "angle_max": 135,
+                    "angle_increment": 0.25,
+                    "scan_frequency": 33.33,
+                    "topic": "/scan"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_rslidar",
+            "type": "rslidar",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "rslidar",
+                "3d_param": {
+                    "laser_ip": "192.168.1.200",
+                    "laser_port": 6699,
+                    "model": "RS16",
+                    "rpm": 600,
+                    "time_offset": 0,
+                    "min_range": 0.4,
+                    "max_range": 200.0,
+                    "use_pcap": false,
+                    "npackets": -1,
+                    "calib_path":"",
+                    "pcap_file_name": "",
+                    "pcap_read_fast": false,
+                    "pcap_read_once": false,
+                    "pcap_repeated_delay": 0.0,
+                    "start_angle": 0.0,
+                    "end_angle": 360.0,
+                    "start_ring": 0,
+                    "end_ring": 15,
+                    "difop_port": 7788,
+                    "resolution": 5,
+                    "frequency": 0,
+                    "topic": "/pointcloud"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_velodyne",
+            "type": "velodyne",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "velodyne",
+                "3d_param": {
+                    "laser_ip": "192.168.1.200",
+                    "laser_port": 2368,
+                    "model": "VLP16",
+                    "rpm": 600,
+                    "time_offset": 0,
+                    "min_range": 0.4,
+                    "max_range": 130.0,
+                    "use_pcap": false,
+                    "npackets": -1,
+                    "calib_path":"",
+                    "pcap_file_name": "",
+                    "pcap_read_fast": false,
+                    "pcap_read_once": false,
+                    "pcap_repeated_delay": 0.0,
+                    "start_angle": 0.0,
+                    "end_angle": 360.0,
+                    "start_ring": 0,
+                    "end_ring": 15,
+                    "difop_port": 0,
+                    "resolution": 0,
+                    "frequency": 0,
+                    "topic": "/pointcloud"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "laser_pandar",
+            "type": "pandar",
+            "adapter": "laser",
+            "node": "ros",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/laser",
+                "type": "pandar",
+                "2d_param": {
+                    "laser_ip": "192.168.1.201",
+                    "laser_port": 2368,
+                    "model": "PandarQT",
+                    "rpm": 600,
+                    "time_offset": 0,
+                    "min_range": 0.1,
+                    "max_range": 30.0,
+                    "use_pcap": false,
+                    "npackets": -1,
+                    "calib_path":"",
+                    "pcap_file_name": "",
+                    "pcap_read_fast": false,
+                    "pcap_read_once": false,
+                    "pcap_repeated_delay": 0.0,
+                    "start_angle": 0.0,
+                    "end_angle": 360.0,
+                    "start_ring": 0,
+                    "end_ring": 63,
+                    "difop_port": 2368,
+                    "resolution": 0,
+                    "frequency": 0,
+                    "topic": "/pointcloud"
+                },
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        }
+    ],
+    "camera": [
+        {
+            "id": "camera_2d",
+            "type": "2d",
+            "adapter": "camera",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/camera/2d",
+                "type": "2d",
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "camera_rs",
+            "type": "rs_d435",
+            "adapter": "camera",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/camera/realsense",
+                "type": "rs_d435",
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        },
+        {
+            "id": "camera_ifm",
+            "type": "ifm",
+            "adapter": "camera",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/camera/ifm",
+                "type": "ifm",
+                "base_frame_id": "base_link",
+                "frame_id": "laser_link"
+            }
+        }
+    ],
+    "battery": [
+        {
+            "id": "battery",
+            "type": "battery",
+            "adapter": "battery",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/battery",
+                "type": "curtis",
+                "node_id": 11,
+                "channel": 0,
+                "mode": 0
+            }
+        }
+    ],
+    "imu": [
+        {
+            "id": "imu",
+            "type": "imu",
+            "adapter": "imu",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/imu",
+                "type": "serial",
+                "node_id": 0,
+                "channel": 0,
+                "mode": 0,
+                "dev": "/dev/ttyUSB0",
+                "baudrate" : 115200
+            }
+        }
+    ],
+    "carrier": [
+        {
+            "id": "carrier",
+            "type": "carrier",
+            "adapter": "carrier",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/carrier/lift",
+                "type": "lift"
+            }
+        }
+    ],
+    "audio": [
+        {
+            "id": "audio",
+            "type": "audio",
+            "adapter": "audio",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/audio",
+                "type": "audio"
+            }
+        }
+    ],
+    "rfid": [
+        {
+            "id": "rfid",
+            "type": "rfid",
+            "adapter": "rfid",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/rfid",
+                "type": "rfid"
+            }
+        }
+    ],
+    "gps": [
+        {
+            "id": "gps",
+            "type": "gps",
+            "adapter": "gps",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/gps",
+                "type": "gps"
+            }
+        }
+    ],
+    "io": [
+        {
+            "id": "io",
+            "type": "io",
+            "adapter": "io",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/io/stop",
+                "type": "stop"
+            }
+        }
+    ],
+    "modbus": [
+        {
+            "id": "modbus",
+            "type": "modbus",
+            "adapter": "modbus",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/modbus",
+                "type": "modbus"
+            }
+        }
+    ],
+    "plc": [
+        {
+            "id": "plc",
+            "type": "plc",
+            "adapter": "plc",
+            "node": "",
+            "url": "",
+            "env": [],
+            "depend": [],
+            "args": [],
+            "default": {
+                "name": "/comwise/plc",
+                "type": "plc"
+            }
+        }
+    ]
+}

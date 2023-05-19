@@ -1,0 +1,8 @@
+string id
+string module
+string type
+string data
+---
+uint32 code
+string msg
+string data

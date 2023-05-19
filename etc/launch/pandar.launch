@@ -1,0 +1,34 @@
+<launch>
+    <arg name="namespace" value="pandar"/>
+    <arg name="device_ip" value="192.168.1.201"/>
+    <arg name="device_port"  value="2368"/>
+    <arg name="difop_port"  value="10110"/>
+    <arg name="start_angle"  value="0"/>
+    <arg name="end_angle"  value="360"/>
+    <arg name="start_ring"  value="0"/>
+    <arg name="end_ring"  value="63"/>
+    <arg name="model" value="PandarQT"/>
+    <arg name="pcldata_type" default="0"/>
+    <arg name="lidar_correction_file"  default="$(find hesai_lidar)/config/correction.csv"/>
+    <arg name="frame_id" value="pandar"/>
+    <arg name="topic" value="pandar_points" />
+    <arg name="health" value="diagnostics"/>
+    <group ns="$(arg namespace)">
+        <node pkg="hesai_lidar" name="hesai_lidar" type="hesai_lidar_node" required="true" output="screen" >
+            <param name="server_ip" type="string" value="$(arg device_ip)"/>
+            <param name="lidar_recv_port"  type="int" value="$(arg device_port)"/>
+            <param name="gps_port"  type="int" value="$(arg difop_port)"/>
+            <param name="start_angle"  type="double" value="$(arg start_angle)"/>
+            <param name="end_angle"  type="double" value="$(arg end_angle)"/>
+            <param name="start_ring" value="$(arg start_ring)" />
+            <param name="end_ring" value="$(arg end_ring)" />
+            <param name="lidar_type"  type="string" value="$(arg model)"/>
+            <param name="pcldata_type"  type="int" value="$(arg pcldata_type)"/>
+            <param name="lidar_correction_file"  type="string" value="$(arg lidar_correction_file)"/>
+            <param name="frame_id"  type="string" value="$(arg frame_id)"/>
+            <remap from="pandar" to="$(arg topic)"/>
+            <remap from="diagnostics" to="$(arg health)"/>
+            <remap from="/diagnostics" to="$(arg health)"/>
+        </node>
+    </group>
+</launch>

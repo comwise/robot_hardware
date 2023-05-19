@@ -1,0 +1,29 @@
+<launch>
+  <arg name="node_name" value="urg_node"/>
+  <arg name="host" value="192.168.1.10" />
+  <arg name="port" value="10940" />
+  <arg name="frame_id" value="laser" />
+  <arg name="scan_frequency" value="33.33" />
+  <arg name="angle_resolution" value="0.5" />
+  <arg name="start_angle" value="-135" />
+  <arg name="end_angle" value="135" />
+  <arg name="inverted" value="false"/>
+  <arg name="intensity" value="true"/>
+  <arg name="topic" value="scan" />
+  <arg name="health" value="diagnostics"/>
+  <node name="$(arg node_name)" pkg="urg_node" type="urg_node" required="true" output="screen">
+    <param name="ip_address" value="$(arg host)"/>  
+    <param name="ip_port" value="$(arg port)"/>
+    <param name="serial_port" value="/dev/ttyACM0"/>
+    <param name="serial_baud" value="115200"/>
+    <param name="frame_id" value="$(arg frame_id)"/>
+    <param name="calibrate_time" value="false"/>
+    <param name="publish_intensity" value="$(arg intensity)"/>
+    <param name="publish_multiecho" value="false"/>
+    <param name="angle_min" value="$(eval arg('start_angle')*3.1415926/180)"/>
+    <param name="angle_max" value="$(eval arg('end_angle')*3.1415926/180)"/>
+    <param name="angle_inc" value="$(eval arg('angle_resolution')/1.0)"/>
+    <remap from="scan" to="$(arg topic)"/>
+    <!--<remap from="diagnostics" to="$(arg health)"/> -->
+  </node>
+</launch>

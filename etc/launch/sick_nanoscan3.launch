@@ -1,0 +1,45 @@
+<launch>
+  <arg name= "node_name" value= "sick_safetyscanners"/>
+  <arg name= "health" value= "diagnostics"/>
+  <arg name= "topic" value= "laser_scan" />
+  <arg name= "host" value= "192.168.1.10" />
+  <arg name= "local_ip" value= "192.168.1.2" />
+  <arg name= "port" value= "2112" />
+  <arg name= "frame_id" value= "laser" />
+  <arg name= "scan_frequency" value= "20" />
+  <arg name= "angle_resolution" value= "0.17" />
+  <arg name= "start_angle" value= "-137.5" />
+  <arg name= "end_angle" value= "137.5" />
+  <arg name= "inverted" value= "false"/>
+  <arg name= "intensity" value= "true"/>
+  <arg name= "skip" default= "0" />
+  <arg name= "time_offset" default= "0.0" />
+  <arg name= "channel_enabled" default= "True" />
+  <arg name= "general_system_state" default= "True" />
+  <arg name= "derived_settings" default= "True" />
+  <arg name= "measurement_data" default= "True" />
+  <arg name= "intrusion_data" default= "True" />
+  <arg name= "application_io_data" default= "True" />
+  <arg name= "use_persistent_config" default= "False" />
+  <node pkg= "sick_safetyscanners" type= "sick_safetyscanners_node" name= "$(arg node_name)" required= "true" output= "screen" ns= "sick_safetyscanners">
+    <param name= "sensor_ip" type= "string" value= "$(arg host)" />
+    <param name= "host_ip" type= "string" value= "$(arg local_ip)" />
+    <param name= "host_udp_port" type= "int" value= "$(arg port)" />
+    <param name= "frame_id" type= "string" value= "$(arg frame_id)" />
+    <param name= "skip" type= "int" value= "$(arg skip)" />
+    <param name= "angle_start" type= "double" value= "$(eval arg('start_angle')*3.1415926/180)" />
+    <param name= "angle_end" type= "double" value= "$(eval arg('end_angle')*3.1415926/180)" />
+    <param name= "time_offset" type= "double" value= "$(arg time_offset)" />
+    <param name= "channel_enabled" type= "bool" value= "$(arg channel_enabled)" />
+    <param name= "general_system_state" type= "bool" value= "$(arg general_system_state)" />
+    <param name= "derived_settings" type= "bool" value= "$(arg derived_settings)" />
+    <param name= "measurement_data" type= "bool" value= "$(arg measurement_data)" />
+    <param name= "intrusion_data" type= "bool" value= "$(arg intrusion_data)" />
+    <param name= "application_io_data" type= "bool" value= "$(arg application_io_data)" />
+    <param name= "use_persistent_config" type= "bool" value= "$(arg use_persistent_config)" />
+    <remap from= "scan" to= "$(arg topic)"/>
+    <remap from= "diagnostics" to= "$(arg health)"/>
+    <remap from="scan_raw" to="$(arg topic)_raw" />
+    <remap from="diagnostics" to="$(arg health)"/>
+  </node>
+</launch>

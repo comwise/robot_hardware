@@ -1,0 +1,23 @@
+<launch>
+  <arg name="node_name" value="r2000"/>
+  <arg name="host" value="192.168.93.10" />
+  <arg name="port" value="80" /> 
+  <arg name="frame_id" value="laser" />
+  <arg name="scan_frequency" value="50" />
+  <arg name="angle_resolution" value="0.25" />
+  <arg name="samples_per_scan" value="1440" />
+  <arg name="start_angle" value="-180" />
+  <arg name="end_angle" value="180" />
+  <arg name="topic" value="laser_scan" />
+  <arg name="health" value="diagnostics"/>
+  <node name="$(arg node_name)" pkg="pepperl_fuchs_r2000"  type="r2000_node" required="true" output="screen">
+      <param name="scanner_ip" value="$(arg host)"/>
+      <param name="port" value="$(arg port)"/>
+      <param name="frame_id" value="$(arg frame_id)"/>
+      <param name="scan_frequency" value="$(eval arg('scan_frequency'))"/>
+      <param name="samples_per_scan" value="$(eval 360/arg('angle_resolution'))"/>
+      <param name="startAngle" value="$(eval arg('start_angle'))"/>
+      <param name="stopAngle" value="$(eval arg('end_angle'))"/>
+      <remap from="scan" to="$(arg topic)"/>
+   </node>
+</launch>

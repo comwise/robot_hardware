@@ -1,0 +1,10 @@
+build/*
+devel/*
+bin/*
+lib/*
+etc/bak/*
+dist
+.github
+.git
+.vscode
+.catkin_workspace

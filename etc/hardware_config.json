@@ -1,0 +1,13 @@
+{
+    "imu": [
+        {
+            "name": "/comwise/imu",
+            "type": "serial",
+            "node_id": 0,
+            "channel": 0,
+            "mode": 0,
+            "dev": "/dev/ttyUSB0",
+            "baudrate" : 115200
+        }
+    ]
+}

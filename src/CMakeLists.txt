@@ -1,0 +1,12 @@
+cmake_minimum_required(VERSION 3.2)
+
+add_subdirectory(etc)
+add_subdirectory(log)
+add_subdirectory(lib)
+add_subdirectory(process)
+add_subdirectory(net)
+add_subdirectory(drv)
+add_subdirectory(srv)
+add_subdirectory(ros_node)
+add_subdirectory(node)
+add_subdirectory(tools)

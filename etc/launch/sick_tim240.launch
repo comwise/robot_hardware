@@ -1,0 +1,35 @@
+<launch>
+    <arg name="node_name" value="sick_tim240"/>
+    <arg name="host" value="192.168.1.200" />
+    <arg name="port" value="2111" />
+    <arg name="topic" value="laser_scan" />
+    <arg name="cloud_topic" default="$(arg topic)_cloud"/>
+    <arg name="frame_id" value="laser" />
+    <arg name="scan_frequency" value="14.5" />
+    <arg name="angle_resolution" value="1" />
+    <arg name="start_angle" value="-120.0" />
+    <arg name="end_angle" value="120.0" />
+    <arg name="inverted" value="false"/>
+    <arg name="intensity" value="true"/>
+    <arg name="health" value="diagnostics"/>
+    <node name="$(arg node_name)" pkg="sick_scan"  type="sick_generic_caller" required="true" output="screen" >
+        <param name="scanner_type" type="string" value="sick_tim_240"/>
+        <param name="hostname" type="string" value="$(arg host)" />
+        <param name="port" type="string" value="$(arg port)" />
+        <param name="frame_id" type="str" value="$(arg frame_id)" />
+        <param name="range_min" value="0.05"/>
+        <param name="range_max" value="10"/>
+        <param name="min_ang" type="double" value="$(eval arg('start_angle')*3.1415926/180)" />
+        <param name="max_ang" type="double" value="$(eval arg('end_angle')*3.1415926/180.0)" />
+        <param name="time_increment" type="double" value="0.00019290123"/>
+        <param name="use_binary_protocol" type="bool" value="false"/>
+        <param name="intensity" type="bool" value="$(arg intensity)" />
+        <param name="intensity_resolution_16bit" type="bool" value="true"/>
+        <param name="skip" type="int" value="0" />
+        <param name="timelimit" type="int" value="5" />
+        <param name="sw_pll_only_publish" type="bool" value="true"/>
+        <param name="cloud_topic" type="string" value="$(arg cloud_topic)"/>
+        <remap from="scan" to="$(arg topic)"/>
+        <!-- <remap from="diagnostics" to="$(arg health)"/>-->
+    </node>
+</launch>

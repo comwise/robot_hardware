@@ -1,0 +1,43 @@
+<?xml version= "1.0"?>
+
+<!-- FOR FUTURE USE. NOT SUPPORTED NOW. DO NOT USE IT. -->
+<launch>
+  <arg name= "node_name" value= "sick_lms_1xx"/>
+  <arg name= "host" value= "192.168.1.200" />
+  <arg name= "port" value= "2111" />
+  <arg name= "frame_id" value= "laser" />
+  <arg name= "scan_frequency" value= "50" />
+  <arg name= "angle_resolution" value= "0.5" />
+  <arg name= "start_angle" value= "-135" />
+  <arg name= "end_angle" value= "135" />
+  <arg name= "inverted" value= "false"/>
+  <arg name= "intensity" value= "true"/>
+  <arg name= "topic" value= "laser_scan" />
+  <arg name= "health" value= "diagnostics"/>
+  <!-- robot_description and robot_state_publisher hier evtl. einbauen  -->
+  <node name= "$(arg node_name)" pkg= "sick_scan" type= "sick_generic_caller" respawn= "false" output= "screen">
+    <!--
+    <param name="skip" type="int" value="0" />
+    <param name="time_offset" type="double" value="-0.001" />
+    <param name="publish_datagram" type="bool" value="false" />
+    <param name="subscribe_datagram" type="bool" value="false" />
+    <param name="device_number" type="int" value="0" />
+    -->
+    <param name= "intensity" type= "bool" value= "$(arg intensity)" />
+    <param name= "intensity_resolution_16bit" type= "bool" value= "false" />
+    <param name= "min_ang" type= "double" value= "$(eval arg('start_angle')*3.1415926/180)" />
+    <param name= "max_ang" type= "double" value= "$(eval arg('end_angle')*3.1415926/180)" />
+    <param name= "frame_id" type= "str" value= "$(arg frame_id)" />
+    <param name= "use_binary_protocol" type= "bool" value= "false" />
+    <param name= "scanner_type" type= "string" value= "sick_lms_1xx"/>
+    <param name= "range_min" type= "double" value= "0.05" />
+    <param name= "range_max" type= "double" value= "25.0" />
+    <param name= "hostname" type= "string" value= "$(arg host)" />
+    <param name= "port" type= "string" value= "$(arg port)" />
+    <param name= "timelimit" type= "int" value= "5" />
+    <param name= "scan_freq" type= "double" value= "$(eval arg('scan_frequency'))" />
+    <param name= "ang_res" type= "double" value= "$(eval arg('angle_resolution'))" />
+    <remap from= "scan" to= "$(arg topic)"/>
+    <!--<remap from="diagnostics" to="$(arg health)"/>-->
+  </node>
+</launch>
