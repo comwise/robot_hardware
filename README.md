@@ -1,13 +1,13 @@
 # robot_hardware
-robot hardware, this is a frame，you can manage lots of hardware sensor
+robot hardware, this is a frame, you can manage lots of hardware sensors, driver, manage running, monitor status and so on
 
 # protocol 
 - can
-- serial
-- modbus
+- serial(485/232)
+- modbus(serial/network)
 - network
-- usb 
-- etc
+- usb
+- ...
 
 # hardware 
 - motor
@@ -16,8 +16,8 @@ robot hardware, this is a frame，you can manage lots of hardware sensor
 - laser
 - camera
 - battery
-- gps 
-- etc
+- joystick 
+- ...
 
 # frame 
 - observer and subject
@@ -25,7 +25,14 @@ robot hardware, this is a frame，you can manage lots of hardware sensor
 - data dispatch
 - serial override and callback read/write
 - service and driver auto load/unload, or separate
-- an so on ... 
+- ... 
+
+# depend
+- ubuntu 16.04
+- cmake >= 2.8.0
+- gcc >= 5.4
+- ros kinetic(ros1) 
+- notice: ros_node can separate from node, you can use ros2 frame
 
 # how to build
 1. first you should execute 
